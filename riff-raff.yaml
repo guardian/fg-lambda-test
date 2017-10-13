@@ -1,0 +1,29 @@
+stacks: [playground]
+regions: [eu-west-1]
+templates:
+  jr-microservice-workshop:
+    type: aws-lambda
+    app: lambda-test
+    contentDirectory: lambda-test
+    parameters:
+      bucket: gu-jr-microservice-workshop-dist
+      functionNames: [lambda-test-]
+      fileName: lambda-test.zip
+      prefixStack: false
+
+deployments:
+  jr-microservice-upload:
+    template: lambda-test
+    actions: [uploadLambda]
+  jr-microservice-workshop-cfn:
+    type: cloud-formation
+    app: lambda-test
+    parameters:
+      prependStackToCloudFormationStackName: false
+      cloudFormationStackName: lambda-test
+      templatePath: cfn.yaml
+    dependencies: [lambda-test]
+  jr-microservice-lambda-update:
+    template: lambda-test
+    actions: [updateLambda]
+    dependencies: [lambda-test-cfn]
