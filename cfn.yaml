@@ -59,7 +59,7 @@ Resources:
                 - execute-api:Invoke
               Resource: "*"
 
-  Lambda:
+  WorkshopLambda:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub ${App}-${Stage}
