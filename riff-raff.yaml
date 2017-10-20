@@ -11,19 +11,7 @@ templates:
       fileName: lambda-test.zip
       prefixStack: false
 
-deployments:
-  lambda-test-upload:
-    template: lambda-test
-    actions: [uploadLambda]
-  jr-microservice-workshop-cfn:
-    type: cloud-formation
-    app: lambda-test
-    parameters:
-      prependStackToCloudFormationStackName: false
-      cloudFormationStackName: lambda-test
-      templatePath: cfn.yaml
-    dependencies: [lambda-test]
-  jr-microservice-lambda-update:
-    template: lambda-test
-    actions: [updateLambda]
-    dependencies: [lambda-test-cfn]
+  deployments:
+    lambda-test-upload:
+      template: lambda-test
+      actions: [uploadLambda]
