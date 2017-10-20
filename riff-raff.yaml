@@ -15,3 +15,15 @@ deployments:
   lambda-test-upload:
     template: lambda-test
     actions: [uploadLambda]
+  lambda-test-cfn:
+    type: cloud-formation
+    app: lambda-test
+    parameters:
+      prependStackToCloudFormationStackName: false
+      cloudFormationStackName: lambda-test
+      templatePath: cfn.yaml
+    dependencies: [lambda-test-upload]
+  lambda-test-lambda-update:
+    template: lambda-test
+    actions: [updateLambda]
+    dependencies: [lambda-test-cfn]
