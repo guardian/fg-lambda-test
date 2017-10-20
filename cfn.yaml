@@ -97,9 +97,9 @@ Resources:
   WorkshopApiResource:
     Type: AWS::ApiGateway::Resource
     Properties:
-        RestApiId: !Ref WorkshopApi
-        ParentId: !GetAtt [WorkshopApi, RootResourceId]
-        PathPart: helloWorld
+      RestApiId: !Ref WorkshopApi
+      ParentId: !GetAtt [WorkshopApi, RootResourceId]
+      PathPart: helloWorld
     DependsOn: WorkshopApi
 
   WorkshopApiMethod:
