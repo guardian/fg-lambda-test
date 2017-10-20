@@ -11,7 +11,7 @@ templates:
       fileName: lambda-test.zip
       prefixStack: false
 
-  deployments:
-    lambda-test-upload:
-      template: lambda-test
-      actions: [uploadLambda]
+deployments:
+  lambda-test-upload:
+    template: lambda-test
+    actions: [uploadLambda]
