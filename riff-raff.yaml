@@ -1,7 +1,7 @@
 stacks: [playground]
 regions: [eu-west-1]
 templates:
-  jr-microservice-workshop:
+  lambda-test:
     type: aws-lambda
     app: lambda-test
     contentDirectory: lambda-test
@@ -12,7 +12,7 @@ templates:
       prefixStack: false
 
 deployments:
-  jr-microservice-upload:
+  lambda-test-upload:
     template: lambda-test
     actions: [uploadLambda]
   jr-microservice-workshop-cfn:
