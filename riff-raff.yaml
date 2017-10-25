@@ -1,29 +1,29 @@
 stacks: [playground]
 regions: [eu-west-1]
 templates:
-  lambda-test:
+  fg-lambda-test:
     type: aws-lambda
-    app: lambda-test
-    contentDirectory: lambda-test
+    app: fg-lambda-test
+    contentDirectory: fg-lambda-test
     parameters:
       bucket: gu-jr-microservice-workshop-dist
-      functionNames: [lambda-test-]
-      fileName: lambda-test.zip
+      functionNames: [fg-lambda-test-]
+      fileName: fg-lambda-test.zip
       prefixStack: false
 
 deployments:
-  lambda-test-upload:
-    template: lambda-test
+  fg-lambda-test-upload:
+    template: fg-lambda-test
     actions: [uploadLambda]
-  lambda-test-cfn:
+  fg-lambda-test-cfn:
     type: cloud-formation
-    app: lambda-test
+    app: fg-lambda-test
     parameters:
       prependStackToCloudFormationStackName: false
-      cloudFormationStackName: lambda-test
+      cloudFormationStackName: fg-lambda-test
       templatePath: cfn.yaml
-    dependencies: [lambda-test-upload]
-  lambda-test-lambda-update:
-    template: lambda-test
+    dependencies: [fg-lambda-test-upload]
+  fg-lambda-test-lambda-update:
+    template: fg-lambda-test
     actions: [updateLambda]
-    dependencies: [lambda-test-cfn]
+    dependencies: [fg-lambda-test-cfn]

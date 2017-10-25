@@ -9,7 +9,7 @@ Parameters:
   App:
     Description: Application name
     Type: String
-    Default: lambda-test
+    Default: fg-lambda-test
   Stage:
     Description: Stage name
     Type: String

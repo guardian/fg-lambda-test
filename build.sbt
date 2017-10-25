@@ -1,4 +1,4 @@
-name := "lambda-test"
+name := "fg-lambda-test"
 
 organization := "com.gu"
 
