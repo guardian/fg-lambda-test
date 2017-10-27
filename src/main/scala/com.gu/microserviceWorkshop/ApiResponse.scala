@@ -9,6 +9,6 @@ case class APIResponse(statusCode: Int, headers: Map[String, String], body: Stri
 
 object APIResponse {
 
-  private val APIResponseEncoder : Encoder[APIResponse] = deriveEncoder
+  implicit val APIResponseEncoder : Encoder[APIResponse] = deriveEncoder
 
 }
