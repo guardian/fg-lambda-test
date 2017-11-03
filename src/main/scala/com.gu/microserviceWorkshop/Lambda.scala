@@ -14,7 +14,7 @@ object Lambda {
     // decode[APIInput](inputString) returns Either
     val input = decode[APIInput](inputString).toOption.map(x => x.value.toString())
 
-    val response = APIResponse(200,  Map("Content-Type" -> "application/json"), input.getOrElse("Invalid input"))
+    val response = APIResponse(200,  Map("Content-Type" -> "application/json"), inputString/*input.getOrElse("Invalid input")*/)
 
     //no spaces converts json to a string
     out.write(response.asJson.noSpaces.getBytes(UTF_8))
