@@ -10,7 +10,9 @@ object Lambda {
   def handler(in: InputStream, out: OutputStream): Unit = {
 
     val inputString = Source.fromInputStream(in).mkString("")
+    System.out.println(inputString)
     // decode[APIInput](inputString) returns Either
+    System.out.println(decode[APIRequest](inputString).left.map(_.toString))
     val input = decode[APIRequest](inputString).toOption.map(x => x.body.value.toString)
 
     val response = APIResponse(200,  Map("Content-Type" -> "application/json"), input.getOrElse("Invalid input"))
