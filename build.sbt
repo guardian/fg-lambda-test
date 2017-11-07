@@ -23,7 +23,8 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser" % "0.7.0",
   "io.circe" %% "circe-generic-extras_sjs0.6" % "0.7.0"
     exclude("org.typelevel", "cats-core_sjs0.6_2.11" )
-    exclude("com.chuusai", "shapeless_sjs0.6_2.11")
+    exclude("com.chuusai", "shapeless_sjs0.6_2.11"),
+  "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 )
 
 enablePlugins(JavaAppPackaging, RiffRaffArtifact)

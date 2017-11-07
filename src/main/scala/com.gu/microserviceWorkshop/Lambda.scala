@@ -11,20 +11,24 @@ object Lambda {
 
     val inputString = Source.fromInputStream(in).mkString("")
     // decode[APIInput](inputString) returns Either
-    val body = decode[APIRequest](inputString).toOption.map(x => x.body)
-    val response = body match {
+    val response = handleAPIGatewayRequest(inputString)
+
+    //no spaces converts json to a string
+    out.write(response.asJson.noSpaces.getBytes(UTF_8))
+
+  }
+
+  def handleAPIGatewayRequest(in: String): APIResponse = {
+    val body = decode[APIRequest](in).toOption.map(x => x.body)
+    body match {
       case Some(s) => {
         val value = decode[APIInput](s).toOption.map(x => x.value)
-        APIResponse(200,  Map("Content-Type" -> "application/json"), "Value is " + value.toString)
+        APIResponse(200,  Map("Content-Type" -> "application/json"), "Value is " + value.getOrElse(0).toString)
       }
       case None => {
         APIResponse(200,  Map("Content-Type" -> "application/json"), "Error decoding body")
       }
     }
-
-    //no spaces converts json to a string
-    out.write(response.asJson.noSpaces.getBytes(UTF_8))
-
   }
 
   def isPrime(number: Int): Boolean = {
