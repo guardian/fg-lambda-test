@@ -12,3 +12,8 @@ object APIResponse {
   implicit val APIResponseEncoder : Encoder[APIResponse] = deriveEncoder
 
 }
+
+case class APIResult(number: Int, isPrime: Boolean)
+object APIResult {
+  implicit val APIResultEncoder : Encoder[APIResult] = deriveEncoder
+}

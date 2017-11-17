@@ -23,7 +23,13 @@ object Lambda {
     body match {
       case Some(s) => {
         val value = decode[APIInput](s).toOption.map(x => x.value)
-        APIResponse(200,  Map("Content-Type" -> "application/json"), "Value is " + value.getOrElse(0).toString)
+        value match {
+          case Some(number) => {
+            val result = APIResult(number, isPrime(number))
+            APIResponse(200,  Map("Content-Type" -> "application/json"), result.asJson.noSpaces)
+          }
+          case None => APIResponse(200, Map("Content-Type" -> "application/json"), "Error decoding body")
+        }
       }
       case None => {
         APIResponse(200,  Map("Content-Type" -> "application/json"), "Error decoding body")
@@ -32,6 +38,20 @@ object Lambda {
   }
 
   def isPrime(number: Int): Boolean = {
-    return false
+    if (number < 2) {
+      return false
+    } else if (number <= 3) {
+      return true
+    } else if (number % 2 == 0) {
+      return false
+    }
+    var n = 3
+    while (n <= Math.sqrt(number)) {
+      if (number % n == 0) {
+        return false
+      }
+      n += 1
+    }
+    return true
   }
 }
